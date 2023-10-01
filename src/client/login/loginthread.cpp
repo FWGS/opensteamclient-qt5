@@ -88,7 +88,7 @@ void LoginThread::steamServerConnected(SteamServersConnected_t connected) {
         // Also save the user to all remembered users
         auto rememberedUsers = GetRememberedUsers();
         rememberedUsers.push_back(QString::fromStdString(this->username));
-        Application::GetApplication()->settings->setValue("LoginInfo/RememberedAccounts", rememberedUsers);
+        Application::GetApplication()->settings->setValue("LoginInfo/RememberedAccounts", QVariant::fromValue(rememberedUsers));
     }
 
     // Save settings 
@@ -435,7 +435,7 @@ void LoginThread::RemoveCachedCredentials(std::string username) {
         }
     }
 
-    Application::GetApplication()->settings->setValue("LoginInfo/RememberedAccounts", newList);
+    Application::GetApplication()->settings->setValue("LoginInfo/RememberedAccounts", QVariant::fromValue(newList));
 
     if (Application::GetApplication()->settings->value("LoginInfo/LoginUser").value<QString>() == QString::fromStdString(username)) {
         Application::GetApplication()->settings->remove("LoginInfo/LoginUser");

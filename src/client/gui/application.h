@@ -53,3 +53,15 @@ public slots:
 signals:
     void quitRequested();
 };
+
+Q_DECLARE_METATYPE(App*);
+Q_DECLARE_METATYPE(PostLogonState_t);
+Q_DECLARE_METATYPE(SteamServersConnected_t);
+Q_DECLARE_METATYPE(SteamServerConnectFailure_t);
+Q_DECLARE_METATYPE(AppLicensesChanged_t);
+Q_DECLARE_METATYPE(DownloadScheduleChanged_t);
+Q_DECLARE_METATYPE(DownloadSpeedInfo);
+Q_DECLARE_METATYPE(AppId_t);
+                  
+
+//Q_DECLARE_METATYPE(App)

@@ -28,7 +28,7 @@ void Thread::run() {
 void Thread::startThread() {
     std::cout << "[Thread] StartThread called" << std::endl;
 
-    this->setObjectName(this->ThreadName());
+    this->setObjectName(QString::fromStdString(this->ThreadName()));
     this->start();
 }
 

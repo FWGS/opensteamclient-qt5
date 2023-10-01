@@ -90,3 +90,5 @@ private slots:
     void CallbackManager_DownloadScheduleChanged(DownloadScheduleChanged_t info);
 
 };
+
+Q_DECLARE_METATYPE(DownloadItem *);

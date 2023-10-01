@@ -149,7 +149,14 @@ void Application::InitApplication()
 
       // Set the .desktop file name (needed for the icon to work)
       qobject_cast<QApplication *>(QApp)->setDesktopFileName("opensteamclient");
-
+      
+      qRegisterMetaType< PostLogonState_t >();
+      qRegisterMetaType< SteamServersConnected_t >();
+      qRegisterMetaType< AppLicensesChanged_t >();
+      qRegisterMetaType< DownloadScheduleChanged_t >();
+      qRegisterMetaType< DownloadSpeedInfo >();
+      qRegisterMetaType< AppId_t>();
+      
       // Connect loading screen logic
       connect(Global_ThreadController->callbackThread, &CallbackThread::PostLogonState, this, &Application::postLogonState);
     }

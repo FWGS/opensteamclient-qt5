@@ -49,12 +49,12 @@ void AppDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, c
             QString fullStatus = QString::fromStdString(std::string(app->name));
             std::string currentBeta = app->GetCurrentBeta();
             if (!currentBeta.empty()) {
-                fullStatus += " [" + currentBeta + "]";
+                fullStatus += " [" + QString::fromStdString(currentBeta) + "]";
             }
 
             std::string displayString = app->state->DisplayString();
             if (!displayString.empty()) {
-                fullStatus += " - " + app->state->DisplayString();
+                fullStatus += QString::fromStdString(" - " + app->state->DisplayString());
             }
             
 

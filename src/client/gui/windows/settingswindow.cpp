@@ -136,7 +136,7 @@ void SettingsWindow::on_testBetaKeyButton_clicked()
     std::string password = ui->betaKeyBox->text().toStdString();
     Global_SteamClientMgr->ClientAppManager->CheckBetaPassword(app->appid, password.c_str());
 
-    connect(Global_ThreadController->callbackThread, &CallbackThread::CheckAppBetaPasswordResponse, this, &SettingsWindow::betaPasswordResponseReceived, Qt::ConnectionType::SingleShotConnection);
+    connect(Global_ThreadController->callbackThread, &CallbackThread::CheckAppBetaPasswordResponse, this, &SettingsWindow::betaPasswordResponseReceived);
 }
 
 void SettingsWindow::betaPasswordResponseReceived(CheckAppBetaPasswordResponse_t resp) {

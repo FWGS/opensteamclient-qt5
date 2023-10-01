@@ -70,4 +70,5 @@ private:
   AppState stateFilter;
 };
 
-Q_DECLARE_METATYPE(AppModel)
+//Q_DECLARE_METATYPE(AppModel)
+Q_DECLARE_METATYPE(std::string)

@@ -673,8 +673,8 @@ void MainWindow::playClicked() {
     }
     if (workingLaunchOptions.size() > 1) {
         LaunchOptionsDialog *diag = new LaunchOptionsDialog(this, workingLaunchOptions);
-        connect(diag, &LaunchOptionsDialog::OnCancelled, this, &MainWindow::launchOptionsDialog_cancelled, Qt::ConnectionType::SingleShotConnection);
-        connect(diag, &LaunchOptionsDialog::OnOptionSelected, this, &MainWindow::launchOptionsDialog_optionSelected, Qt::ConnectionType::SingleShotConnection);
+        connect(diag, &LaunchOptionsDialog::OnCancelled, this, &MainWindow::launchOptionsDialog_cancelled);
+        connect(diag, &LaunchOptionsDialog::OnOptionSelected, this, &MainWindow::launchOptionsDialog_optionSelected);
         diag->show();
     }
 }

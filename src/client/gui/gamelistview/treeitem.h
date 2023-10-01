@@ -31,3 +31,4 @@ public:
     // Either a category name or a pointer to an app
     QVariant value;
 };
+Q_DECLARE_METATYPE(TreeItem*);

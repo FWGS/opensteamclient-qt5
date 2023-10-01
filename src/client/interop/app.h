@@ -172,5 +172,5 @@ signals:
     void AppLaunchOrUpdateError(EAppUpdateError err);
 };
 
-Q_DECLARE_METATYPE(App)
-Q_DECLARE_METATYPE(App*)
+//Q_DECLARE_METATYPE(App)
+//Q_DECLARE_METATYPE(App*)

@@ -15,22 +15,23 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 # Extra cmake modules
-find_package(ECM REQUIRED NO_MODULE)
+#find_package(ECM REQUIRED NO_MODULE)
+set(NOWEBVIEW true)
 
 # Qt modules
 
-find_package(Qt6 COMPONENTS Core Widgets Network WebEngineWidgets QuickWidgets QUIET)
+#find_package(Qt6 COMPONENTS Core Widgets Network WebEngineWidgets QuickWidgets QUIET)
 
-if (Qt6_FOUND) 
-else()
-    message(STATUS "Qt6 is missing WebEngineWidgets/QuickWidgets, webview support won't be built!")
-    set(NOWEBVIEW true)
-endif()
+#if (Qt6_FOUND) 
+#else()
+#    message(STATUS "Qt6 is missing WebEngineWidgets/QuickWidgets, webview support won't be built!")
+#    set(NOWEBVIEW true)
+#endif()
 
 
-if (NOWEBVIEW)
-    find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network)
-endif()
+#if (NOWEBVIEW)
+    find_package(Qt5 REQUIRED COMPONENTS Core Widgets Network)
+#endif()
 
 # App .desktop and logo (now hardcoded since using extra cmake modules breaks webengine)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package/opensteamclient.desktop DESTINATION /usr/share/applications)
@@ -207,21 +208,21 @@ target_include_directories(opensteam PRIVATE ${PROJECT_SOURCE_DIR}/include ${Qt6
 target_include_directories(steamserviced PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
 # Improves build performance
-set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
-set_target_properties(Qt6::Widgets PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
-set_target_properties(Qt6::Network PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+#set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+#set_target_properties(Qt6::Widgets PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+#set_target_properties(Qt6::Network PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
 
 if (NOWEBVIEW)
 else()
-set_target_properties(Qt6::QuickWidgets PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
-set_target_properties(Qt6::WebEngineWidgets PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+set_target_properties(Qt5::QuickWidgets PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+set_target_properties(Qt5::WebEngineWidgets PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
 endif()
 
-target_link_libraries(opensteam ${qrencode_LIBRARIES} OpenSSL::SSL nlohmann_json::nlohmann_json Qt6::Widgets Qt6::Core Qt6::Network ${LibArchive_LIBRARIES} ${Protobuf_LIBRARIES} ${CURL_LIBRARIES})
+target_link_libraries(opensteam ${qrencode_LIBRARIES} OpenSSL::SSL nlohmann_json::nlohmann_json Qt5::Widgets Qt5::Core Qt5::Network ${LibArchive_LIBRARIES} ${Protobuf_LIBRARIES} ${CURL_LIBRARIES})
 
 if (NOWEBVIEW)
 else()
-target_link_libraries(dynamicwebview PUBLIC Qt6::Widgets Qt6::Core Qt6::WebEngineWidgets Qt6::QuickWidgets)
+#target_link_libraries(dynamicwebview PUBLIC Qt6::Widgets Qt6::Core Qt6::WebEngineWidgets Qt5::QuickWidgets)
 endif()
 
 target_link_libraries(reaper)

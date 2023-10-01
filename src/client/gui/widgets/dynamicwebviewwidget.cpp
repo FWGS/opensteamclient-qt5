@@ -138,12 +138,12 @@ void DynamicWebViewWidget::LoadURL(QUrl url)
             cookie.setDomain(url.host());
             cookie.setSecure(true);
             cookie.setHttpOnly(true);
-            cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
+//            cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
             interface->setCookie(cookie);
         } else {
             DEBUG_MSG << "[DynamicWebViewWidget] Couldn't get cached webauth token, scheduling website reload for later..." << std::endl;
             Global_SteamClientMgr->ClientUser->RequestWebAuthToken();
-            connect(Global_ThreadController->callbackThread, &CallbackThread::WebAuthRequestCallback, this, &DynamicWebViewWidget::OnWebAuthRequestCallback, Qt::ConnectionType::SingleShotConnection);
+            connect(Global_ThreadController->callbackThread, &CallbackThread::WebAuthRequestCallback, this, &DynamicWebViewWidget::OnWebAuthRequestCallback);
         }
 
         free((void *)tokenCStr);
@@ -163,7 +163,7 @@ void DynamicWebViewWidget::LoadURL(QUrl url)
         cookie2.setDomain(url.host());
         cookie2.setSecure(false);
         cookie2.setHttpOnly(false);
-        cookie2.setSameSitePolicy(QNetworkCookie::SameSite::None);
+//        cookie2.setSameSitePolicy(QNetworkCookie::SameSite::None);
         interface->setCookie(cookie2);
     }
 
